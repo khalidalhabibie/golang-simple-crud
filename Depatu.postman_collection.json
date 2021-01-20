@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "2ebc35bf-b8ef-4863-86ae-4f0faa24ebc5",
+		"name": "Depatu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Welcom Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{docker_address}}/",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"khalid\",\n    \"email\":\"khalid@email\",\n    \"password\":\"passwordKhalid\"\n    \n\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/register",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"khalid\",\n    \"password\":\"passwordKhalid\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/signin",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTExMTIxOTUsImlhdCI6MTYxMTEwMTM5NSwidXNlcklEIjoxLCJ1c2VyTmFtZSI6ImtoYWxpZCJ9.3bD80J12Do0iOuKKfVZSmXkrY9zA3hDpP36vlKDTUgk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/profil",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"profil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTExMTIxOTUsImlhdCI6MTYxMTEwMTM5NSwidXNlcklEIjoxLCJ1c2VyTmFtZSI6ImtoYWxpZCJ9.3bD80J12Do0iOuKKfVZSmXkrY9zA3hDpP36vlKDTUgk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image\" :\"asdasda\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/update",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "user API\n"
+		}
+	]
+}
