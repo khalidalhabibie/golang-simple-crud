@@ -77,7 +77,7 @@ contoh
 bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTMyMjI4MiwiaWF0IjoxNjExMzExNDgyLCJ1c2VySUQiOjQsInVzZXJOYW1lIjoiaGFiaWJpZSJ9.q_bSPk0d8zy6eOQBQlkgLUCNRak5OLflecH0a9cp-Ow
 ```
 
-###Get Profile
+### Get Profile
 ```
 Request: mendapatkan data profile
 Method: GET
@@ -85,7 +85,7 @@ Url:{{docker_address}}/api/v1/user/profil
 Parameter: Authorization Header dengan value token dari request SignIn
 ```
 
-###Update Profile
+### Update Profile
 ```
 Request: update data profile
 Method: PUT
@@ -103,7 +103,7 @@ contoh parameter pada body
 
 ```
 
-###Menambahkan Alamat
+### Menambahkan Alamat
 ```
 Request: menambahkan alamat user
 Method: POST
@@ -148,7 +148,7 @@ ID adalah Id address dimana jika bukan  user yang berhak untuk mengupdate addres
 }
 ```
 
-###Update Password
+### Update Password
 ```
 Request: update password User
 Method: PUT
@@ -164,7 +164,7 @@ contoh body
 ```
 
 
-###Delete Address
+### Delete Address
 ```
 Request: menghapus address
 Method: DELETE
@@ -234,7 +234,7 @@ bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTMy
 ```
 
 
-###Get Data Semua User
+### Get Data Semua User
 ```
 Request: mendapatkan data Semua User
 Method: GET
@@ -257,7 +257,7 @@ contoh body
 ```
 
 
-###Menambahkan Task
+### Menambahkan Task
 ```
 Request: menambahkan alamat user
 Method: POST
@@ -273,7 +273,7 @@ contoh parameter pada body
 }
 ```
 
-###Get Semua Task
+### Get Semua Task
 ```
 Request: mendapatkan data Semua Task
 Method: GET
@@ -281,7 +281,7 @@ Url:{{docker_address}}/api/v1/admin/tasks
 Parameter: Authorization Header dengan value token dari request SignIn
 ```
 
-###Get Task dengan parameter user
+### Get Task dengan parameter user
 ```
 Request: mendapatkan data task dengan user
 Method: GET
@@ -295,7 +295,7 @@ contoh body
 }
 ```
 
-###Delete task
+### Delete task
 ```
 Request: menghapus task
 Method: DELETE
