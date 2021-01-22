@@ -23,6 +23,8 @@ docker-compose down
 
 ## Akses API
 file collection API sudah ada pada file. 
+collection : Depatu.postman_collection.json
+env : Depatu.postman_environment.json
 
 ## API user
 API ini adalah API yang dapat digunakan oleh user
