@@ -33,7 +33,8 @@ WORKDIR /root/
 COPY --from=builder /depatu_app/main .
 COPY --from=builder /depatu_app/.env .       
 
-# Expose port 8080
+
+# Expose port 8081
 EXPOSE 8081
 
 #Command to run the executable

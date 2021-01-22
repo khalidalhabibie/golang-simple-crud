@@ -8,6 +8,9 @@ import (
 	"github.com/khalidalhabibie/depatu/model"
 	"github.com/khalidalhabibie/depatu/repository"
 	"golang.org/x/crypto/bcrypt"
+	"os"
+	"log"
+	
 )
 
 type UserHandler interface {
@@ -15,8 +18,9 @@ type UserHandler interface {
 	GetProfile(*gin.Context)
 	SignInUser(*gin.Context)
 	UpdateUser(*gin.Context)
-	//DeleteUser(*gin.Context)
-	//GetTask(*gin.Context)
+	UpdatePassword(*gin.Context)
+	GetAllUser(*gin.Context)
+	UploadPhoto(*gin.Context)
 }
 
 type userHandler struct {
@@ -42,22 +46,21 @@ func comparePassword(dbPass, pass string) bool {
 func (h *userHandler) SignInUser(ctx *gin.Context) {
 	var user model.User
 	if err := ctx.ShouldBindJSON(&user); err != nil {
-		//ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 	dbUser, err := h.repo.GetUser(user.Username)
 
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"msg": "User Not Found"})
+		ctx.JSON(http.StatusInternalServerError, gin.H{"message": "User Not Found"})
 		return
 
 	}
 	if isTrue := comparePassword(dbUser.Password, user.Password); isTrue {
-		fmt.Println("user before", dbUser.ID, dbUser.Username)
-		token := GenerateToken(dbUser.ID, dbUser.Username)
-		ctx.JSON(http.StatusOK, gin.H{"msg": "Successfully", "token": token})
+		fmt.Println("user before", dbUser.ID, dbUser.Username, dbUser.Admin)
+		token := GenerateToken(dbUser.ID, dbUser.Username, dbUser.Admin)
+		ctx.JSON(http.StatusOK, gin.H{"message": "Successfully", "token": token})
 		return
 	}
-	ctx.JSON(http.StatusInternalServerError, gin.H{"msg": "Wrong Password"})
+	ctx.JSON(http.StatusInternalServerError, gin.H{"message": "Wrong Password"})
 	return
 
 }
@@ -69,6 +72,7 @@ func (h *userHandler) AddUser(ctx *gin.Context) {
 		return
 	}
 	hashPassword(&user.Password)
+	
 	user, err := h.repo.AddUser(user)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -99,23 +103,118 @@ func (h *userHandler) GetProfile(ctx *gin.Context) {
 func (h *userHandler) UpdateUser(ctx *gin.Context) {
 	var user model.User
 
-	err := ctx.ShouldBindJSON(&user)
-	fmt.Println(user)
+	if err := ctx.ShouldBindJSON(&user); err != nil {
+	}
+
+	
 	const BearerSchema string = "Bearer "
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(BearerSchema):]
+
 	ID := ParsingTokentoID(tokenString)
+	username := ParsingTokentoUsername(tokenString)
+	user.Admin = false
+	
 
 	user.ID = uint(ID)
-	/*
-		user, err := h.repo.UpdateUser(user)
-	*/
+	user.Username = username
+	hashPassword(&user.Password)
+	fmt.Println(user)
+	data, err := h.repo.UpdateUser(user)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 
 	}
+	
+	ctx.JSON(http.StatusOK, data)
 
-	ctx.JSON(http.StatusOK, user)
+}
 
+func (h *userHandler) UpdatePassword(ctx *gin.Context) {
+	var user model.User
+
+	if err := ctx.ShouldBindJSON(&user); err != nil {
+	}
+
+	
+	const BearerSchema string = "Bearer "
+	authHeader := ctx.GetHeader("Authorization")
+	tokenString := authHeader[len(BearerSchema):]
+
+	ID := ParsingTokentoID(tokenString)
+	username := ParsingTokentoUsername(tokenString)
+	user.Admin = false
+	
+
+	user.ID = uint(ID)
+	user.Username = username
+	hashPassword(&user.Password)
+
+	fmt.Println(user.Password)
+	data, err := h.repo.UpdatePassword(user)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+
+	}
+	
+	ctx.JSON(http.StatusOK, data)
+
+}
+
+
+
+
+
+
+
+func (h *userHandler) GetAllUser(ctx *gin.Context) {
+	user, err := h.repo.GetAllUser()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"code": ctx.Writer.Status(), "error": err.Error()})
+		return
+
+	}
+	codeStatus := ctx.Writer.Status()
+	ctx.JSON(http.StatusOK, gin.H{"Data": user, "code": codeStatus})
+
+}
+
+
+
+
+
+
+func (h *userHandler) UploadPhoto(ctx *gin.Context) {
+
+	file, err := ctx.FormFile("photo")
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	const BearerSchema string = "Bearer "
+	authHeader := ctx.GetHeader("Authorization")
+	tokenString := authHeader[len(BearerSchema):]
+	username := ParsingTokentoUsername(tokenString)
+	file.Filename = username
+	fmt.Println(file.Filename)
+	
+	err = ctx.SaveUploadedFile(file,file.Filename+".png")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(dir)
+	log.Print(dir)
+	var user model.User
+	
+	user.Image = file.Filename
+	h.repo.UpdateUser(user)
+	
+	ctx.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 }

@@ -9,12 +9,13 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-func GenerateToken(userid uint, username string) string {
+func GenerateToken(userid uint, username string,admin bool) string {
 	claims := jwt.MapClaims{
 		"exp":      time.Now().Add(time.Hour * 3).Unix(),
 		"iat":      time.Now().Unix(),
 		"userID":   userid,
 		"userName": username,
+		"admin": admin,
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

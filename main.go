@@ -9,12 +9,17 @@ import (
 	"github.com/khalidalhabibie/depatu/route"
 )
 
-func main() {
-	err := godotenv.Load()
-	if err != nil {
+func loadenv() {
+	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	fmt.Println("Starts")
+}
+
+func main() {
+	fmt.Println("Main Application Starts")
+	//Loading Environmental Variable
+	loadenv()
+
 	log.Fatal(route.Run(":8081"))
 
 }

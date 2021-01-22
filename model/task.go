@@ -1,9 +1,12 @@
 package model
 
+import "gorm.io/gorm"
+
 type Task struct {
-	taskname   string `json:"taskname" binding:"required,min=6,max=20" gorm:"unique"`
-	assignedto string `json:"assignedto binding:"min=6,max =20"`
-	status     string `json:"assignedto" binding:"required,max=1024"`
+	gorm.Model
+	Taskname   string `json:"taskname" binding:"required,min=6,max=20" gorm:"unique"`
+	Assignedto string `json:"assignedto" binding:"required,min=6,max=20"`
+	Status     string `json:"status" binding:"required,max=1024"`
 }
 
 func (Task) TableName() string {
