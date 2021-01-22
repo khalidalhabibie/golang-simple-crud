@@ -48,7 +48,7 @@ contoh parameter pada body
 ```
 {
     "username":"khalidalhabibie",
-    "email":"khalid@@gmail.com",
+    "email":"khalid@gmail.com",
     "password":"passwordkhalid"
     
 }
