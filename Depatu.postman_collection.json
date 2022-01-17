@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "2ebc35bf-b8ef-4863-86ae-4f0faa24ebc5",
+		"name": "Depatu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Welcom Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{docker_address}}/",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"khalid\",\n    \"email\":\"khalid@email\",\n    \"password\":\"passwordKhalid\"\n    \n\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/register",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"khalid\",\n    \"password\":\"passwordKhalid\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/signin",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profil",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTMyNjkwMSwiaWF0IjoxNjExMzE2MTAxLCJ1c2VySUQiOjUsInVzZXJOYW1lIjoia2hhbGlkYWxoYWJpYmllIn0.YPm982XzI2eI7oxHgtRFHKpTI83HRm99Oh_XMT_9LF8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/profil",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"profil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTExMTIxOTUsImlhdCI6MTYxMTEwMTM5NSwidXNlcklEIjoxLCJ1c2VyTmFtZSI6ImtoYWxpZCJ9.3bD80J12Do0iOuKKfVZSmXkrY9zA3hDpP36vlKDTUgk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image\" :\"asdasda\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/update",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTIxNDAwNSwiaWF0IjoxNjExMjAzMjA1LCJ1c2VySUQiOjEsInVzZXJOYW1lIjoia2hhbGlkIn0.PNZOwvwpfzwJmtumeKiMKy6CQXM48e1riRr84meTcLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"addressname\" : \"rumah khalid\",\n    \"address\"    : \"jalan kuala sbeleah nomer 22\",\n    \"provience\" : \"aceh\",\n    \"city\"  :\"banda aceh\",\n    \"postalcode\" : 23312\n    }\n\n"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/address",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get address",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTI4NjMxOSwiaWF0IjoxNjExMjc1NTE5LCJ1c2VySUQiOjEsInVzZXJOYW1lIjoia2hhbGlkIn0.AMRwX7hnNv7bqHHV3xVv3Yt8As3YihfPlpHU4koD_9g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/address",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update address",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTMwMDAxOCwiaWF0IjoxNjExMjg5MjE4LCJ1c2VySUQiOjEsInVzZXJOYW1lIjoia2hhbGlkIn0.lwEu_7SSC5c-eX9eA6tCeuN8X6Q7Wi6l1yFhTUCO_SY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ID\" : 1,\n    \n     \"postalcode\" : 2334\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/address",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTMyMjI4MiwiaWF0IjoxNjExMzExNDgyLCJ1c2VySUQiOjQsInVzZXJOYW1lIjoiaGFiaWJpZSJ9.q_bSPk0d8zy6eOQBQlkgLUCNRak5OLflecH0a9cp-Ow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":\"sayaKhalid\"\n    \n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/password",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"password"
+							]
+						},
+						"description": "untuk mengubah password tetapi tidak mengubah data yang lain"
+					},
+					"response": []
+				},
+				{
+					"name": "Deleted Address",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6ZmFsc2UsImV4cCI6MTYxMTMyMjI4MiwiaWF0IjoxNjExMzExNDgyLCJ1c2VySUQiOjQsInVzZXJOYW1lIjoiaGFiaWJpZSJ9.q_bSPk0d8zy6eOQBQlkgLUCNRak5OLflecH0a9cp-Ow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"ID\" : 19\n} "
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/address",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"address"
+							]
+						},
+						"description": "delete address hanya jika itu miliknya"
+					},
+					"response": []
+				},
+				{
+					"name": "upload photo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile",
+									"type": "file",
+									"src": "/home/themisteriousone/Pictures/Wallpapers/Screenshot at 2020-06-11 04-56-08.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/user/photo",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "user API\n"
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "register admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"Admin\",\n    \"email\":\"Admin@email\",\n    \"password\":\"passwordAdmin\",\n    \"admin\":true\n\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/register",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"username\":\"Admin\",\n    \"password\":\"passwordAdmin\"\n    \n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/signin",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjExMTUzNzI5LCJpYXQiOjE2MTExNDI5MjksInVzZXJJRCI6MywidXNlck5hbWUiOiJBZG1pbiJ9.B1AVfGLXvWa-iUeXXtK-iW3THQqBYuusLiTYStmgBUk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{docker_address}}/api/v1/admin/users",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get address user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjExMjk2MDk3LCJpYXQiOjE2MTEyODUyOTcsInVzZXJJRCI6MywidXNlck5hbWUiOiJBZG1pbiJ9.cJnUgBCQd7m3e7u2qWlyWVhqGQjr4lwCHb9PjyUEIcE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"khalid\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/admin/address/user",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"address",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjExMTU0MDM1LCJpYXQiOjE2MTExNDMyMzUsInVzZXJJRCI6MywidXNlck5hbWUiOiJBZG1pbiJ9.m_Udkgtqs2yP5sJ-DD8Q-wOPgIjqiMUzJ3tDup3LMUY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"taskname\" : \"cuci baju\",\n    \"assignedto\" : \"khalid\",\n    \"status\":\"secepeatnuya\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/admin/task",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjExMjAwMzE5LCJpYXQiOjE2MTExODk1MTksInVzZXJJRCI6MywidXNlck5hbWUiOiJBZG1pbiJ9.2aId9qdYEMEGy6__dugDPEf50BsIvzPsVgOGrXR17iA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/admin/tasks",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get task by user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjExMjA4MDc2LCJpYXQiOjE2MTExOTcyNzYsInVzZXJJRCI6MywidXNlck5hbWUiOiJBZG1pbiJ9.ZXzTVSlq3WoIJ7vn32oCx9NBIcUyvz87I9j4-3FSRsc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assignedto\":\"khalid\"\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/admin/task/user",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"task",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjExMjkzNjM5LCJpYXQiOjE2MTEyODI4MzksInVzZXJJRCI6MywidXNlck5hbWUiOiJBZG1pbiJ9.wOaCJjgVxFZo-hwxxaqL2P1vzVrbCbYTGMqGS77DKCg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : 2\n}"
+						},
+						"url": {
+							"raw": "{{docker_address}}/api/v1/admin/task",
+							"host": [
+								"{{docker_address}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"task"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
