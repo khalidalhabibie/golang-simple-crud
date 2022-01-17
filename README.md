@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# depatu
-=======
 # Project Manage Data User dan Task sederhana
 
 ini adalah project sederhana yang berfungsi untuk mengolah data user dengan CRUD secara sederhana dan memberikan task kepada user
@@ -313,4 +310,3 @@ contoh body
 {
      "id" : 1
 } 
->>>>>>> staging
