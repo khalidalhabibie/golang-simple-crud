@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"golang-simple-crud/model"
+	"golang-simple-crud/repository"
+
 	"github.com/gin-gonic/gin"
-	"github.com/khalidalhabibie/depatu/model"
-	"github.com/khalidalhabibie/depatu/repository"
 )
 
 type TaskHandler interface {
@@ -59,7 +60,7 @@ func (h *taskHandler) GetTaskUserAdmin(ctx *gin.Context) {
 	var task model.Task
 
 	if err := ctx.ShouldBindJSON(&task); err != nil {
-		
+
 	}
 	fmt.Println(task.Assignedto)
 	tasks, err := h.repo.GetTaskByUser(task.Assignedto)
@@ -73,16 +74,13 @@ func (h *taskHandler) GetTaskUserAdmin(ctx *gin.Context) {
 
 }
 
-
 func (h *taskHandler) DeleteTask(ctx *gin.Context) {
 	var task model.Task
 
 	if err := ctx.ShouldBindJSON(&task); err != nil {
-		//ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
 	}
-
-	
 
 	fmt.Println(task)
 	data, err := h.repo.DeleteTask(task)
@@ -91,7 +89,7 @@ func (h *taskHandler) DeleteTask(ctx *gin.Context) {
 		return
 
 	}
-	
+
 	ctx.JSON(http.StatusOK, data)
 
 }

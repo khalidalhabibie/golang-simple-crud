@@ -6,7 +6,7 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/khalidalhabibie/depatu/route"
+	"golang-simple-crud/route"
 )
 
 func loadenv() {

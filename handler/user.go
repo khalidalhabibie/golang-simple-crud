@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
-	"github.com/khalidalhabibie/depatu/model"
-	"github.com/khalidalhabibie/depatu/repository"
-	"golang.org/x/crypto/bcrypt"
-	"os"
+	"golang-simple-crud/model"
+	"golang-simple-crud/repository"
 	"log"
-	
+	"os"
+
+	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserHandler interface {
@@ -72,7 +72,7 @@ func (h *userHandler) AddUser(ctx *gin.Context) {
 		return
 	}
 	hashPassword(&user.Password)
-	
+
 	user, err := h.repo.AddUser(user)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -106,7 +106,6 @@ func (h *userHandler) UpdateUser(ctx *gin.Context) {
 	if err := ctx.ShouldBindJSON(&user); err != nil {
 	}
 
-	
 	const BearerSchema string = "Bearer "
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(BearerSchema):]
@@ -114,7 +113,6 @@ func (h *userHandler) UpdateUser(ctx *gin.Context) {
 	ID := ParsingTokentoID(tokenString)
 	username := ParsingTokentoUsername(tokenString)
 	user.Admin = false
-	
 
 	user.ID = uint(ID)
 	user.Username = username
@@ -126,7 +124,7 @@ func (h *userHandler) UpdateUser(ctx *gin.Context) {
 		return
 
 	}
-	
+
 	ctx.JSON(http.StatusOK, data)
 
 }
@@ -137,7 +135,6 @@ func (h *userHandler) UpdatePassword(ctx *gin.Context) {
 	if err := ctx.ShouldBindJSON(&user); err != nil {
 	}
 
-	
 	const BearerSchema string = "Bearer "
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(BearerSchema):]
@@ -145,7 +142,6 @@ func (h *userHandler) UpdatePassword(ctx *gin.Context) {
 	ID := ParsingTokentoID(tokenString)
 	username := ParsingTokentoUsername(tokenString)
 	user.Admin = false
-	
 
 	user.ID = uint(ID)
 	user.Username = username
@@ -158,16 +154,10 @@ func (h *userHandler) UpdatePassword(ctx *gin.Context) {
 		return
 
 	}
-	
+
 	ctx.JSON(http.StatusOK, data)
 
 }
-
-
-
-
-
-
 
 func (h *userHandler) GetAllUser(ctx *gin.Context) {
 	user, err := h.repo.GetAllUser()
@@ -181,26 +171,21 @@ func (h *userHandler) GetAllUser(ctx *gin.Context) {
 
 }
 
-
-
-
-
-
 func (h *userHandler) UploadPhoto(ctx *gin.Context) {
 
 	file, err := ctx.FormFile("photo")
 	if err != nil {
 		fmt.Println(err)
 	}
-	
+
 	const BearerSchema string = "Bearer "
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(BearerSchema):]
 	username := ParsingTokentoUsername(tokenString)
 	file.Filename = username
 	fmt.Println(file.Filename)
-	
-	err = ctx.SaveUploadedFile(file,file.Filename+".png")
+
+	err = ctx.SaveUploadedFile(file, file.Filename+".png")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -212,9 +197,9 @@ func (h *userHandler) UploadPhoto(ctx *gin.Context) {
 	fmt.Println(dir)
 	log.Print(dir)
 	var user model.User
-	
+
 	user.Image = file.Filename
 	h.repo.UpdateUser(user)
-	
+
 	ctx.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 }
