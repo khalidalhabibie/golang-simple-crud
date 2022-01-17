@@ -3,8 +3,8 @@ package route
 import (
 	"net/http"
 
-	"github.com/khalidalhabibie/depatu/handler"
-	"github.com/khalidalhabibie/depatu/middlerware"
+	"golang-simple-crud/handler"
+	middleware "golang-simple-crud/middlerware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,11 +31,11 @@ func Run(address string) error {
 		userProtectedRoutes.GET("/profil", userHandler.GetProfile)
 		userProtectedRoutes.PUT("/profile", userHandler.UpdateUser)
 		userProtectedRoutes.POST("/address", addressHandler.AddAddress)
-		userProtectedRoutes.GET("/address",addressHandler.GetAddressbyUser)
-		userProtectedRoutes.PUT("/address",addressHandler.UpdateAddress)
-		userProtectedRoutes.DELETE("/address",addressHandler.DeleteAddress)
-		userProtectedRoutes.POST("/photo",userHandler.UploadPhoto)
-		userProtectedRoutes.PUT("/password",userHandler.UpdatePassword)
+		userProtectedRoutes.GET("/address", addressHandler.GetAddressbyUser)
+		userProtectedRoutes.PUT("/address", addressHandler.UpdateAddress)
+		userProtectedRoutes.DELETE("/address", addressHandler.DeleteAddress)
+		userProtectedRoutes.POST("/photo", userHandler.UploadPhoto)
+		userProtectedRoutes.PUT("/password", userHandler.UpdatePassword)
 
 	}
 

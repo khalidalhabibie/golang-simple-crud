@@ -1,4 +1,4 @@
-module github.com/khalidalhabibie/depatu
+module golang-simple-crud
 
 go 1.15
 

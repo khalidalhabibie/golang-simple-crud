@@ -1,7 +1,8 @@
 package repository
 
 import (
-	"github.com/khalidalhabibie/depatu/model"
+	"golang-simple-crud/model"
+
 	"gorm.io/gorm"
 )
 
@@ -35,12 +36,9 @@ func (db *taskRepository) GetAllTask() (tasks []model.Task, err error) {
 	return tasks, db.connection.Find(&tasks).Error
 }
 
-
 func (db *taskRepository) DeleteTask(task model.Task) (model.Task, error) {
 	if err := db.connection.First(&task, task.ID).Error; err != nil {
 		return task, err
 	}
 	return task, db.connection.Delete(&task).Error
 }
-
-

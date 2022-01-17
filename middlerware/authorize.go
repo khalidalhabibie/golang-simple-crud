@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"golang-simple-crud/handler"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/khalidalhabibie/depatu/handler"
 )
 
 func AuthorizeMiddleware() gin.HandlerFunc {

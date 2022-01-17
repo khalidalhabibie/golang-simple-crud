@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"github.com/khalidalhabibie/depatu/model"
+	"golang-simple-crud/model"
+
 	"gorm.io/gorm"
-	
 )
 
 type UserRepository interface {
@@ -42,7 +42,7 @@ func (db *userRepository) CekUser(user model.User) (status bool) {
 
 func (db *userRepository) UpdateUser(user model.User) (model.User, error) {
 	dataUpdate := user
-	
+
 	if err := db.connection.First(&user, user.ID).Error; err != nil {
 		return user, err
 	}
@@ -52,27 +52,26 @@ func (db *userRepository) UpdateUser(user model.User) (model.User, error) {
 
 }
 
-func(db*userRepository)UpdatePassword(user model.User)(model.User,error){
+func (db *userRepository) UpdatePassword(user model.User) (model.User, error) {
 	dataUpdate := user
-	
+
 	if err := db.connection.First(&user, user.ID).Error; err != nil {
 		return user, err
 	}
 	dataUpdate.Image = user.Image
 	dataUpdate.Email = user.Email
 	dataUpdate.Bio = user.Bio
-	
-	return user, db.connection.Model(&user).Updates(dataUpdate).Error	
-}
 
+	return user, db.connection.Model(&user).Updates(dataUpdate).Error
+}
 
 func (db *userRepository) UpdatePhotoUser(user model.User) (model.User, error) {
 	dataUpdate := user
-	
+
 	if err := db.connection.First(&user, user.ID).Error; err != nil {
 		return user, err
 	}
-	
+
 	return user, db.connection.Model(&user).Updates(dataUpdate).Error
 
 }

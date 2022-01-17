@@ -5,9 +5,10 @@ import (
 
 	"fmt"
 
+	"golang-simple-crud/model"
+	"golang-simple-crud/repository"
+
 	"github.com/gin-gonic/gin"
-	"github.com/khalidalhabibie/depatu/model"
-	"github.com/khalidalhabibie/depatu/repository"
 )
 
 type AddressHandler interface {
@@ -97,7 +98,6 @@ func (h *addressHandler) GetAddressUserAdmin(ctx *gin.Context) {
 
 }
 
-
 func (h *addressHandler) UpdateAddress(ctx *gin.Context) {
 	var address model.Address
 
@@ -110,9 +110,8 @@ func (h *addressHandler) UpdateAddress(ctx *gin.Context) {
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(BearerSchema):]
 
-	
 	username := ParsingTokentoUsername(tokenString)
-	
+
 	address.Username = username
 
 	fmt.Println(address)
@@ -122,17 +121,16 @@ func (h *addressHandler) UpdateAddress(ctx *gin.Context) {
 		return
 
 	}
-	
+
 	ctx.JSON(http.StatusOK, data)
 
 }
-
 
 func (h *addressHandler) DeleteAddress(ctx *gin.Context) {
 	var address model.Address
 
 	if err := ctx.ShouldBindJSON(&address); err != nil {
-		//ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
 	}
 
@@ -140,9 +138,8 @@ func (h *addressHandler) DeleteAddress(ctx *gin.Context) {
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(BearerSchema):]
 
-	
 	username := ParsingTokentoUsername(tokenString)
-	
+
 	address.Username = username
 
 	fmt.Println(address)
@@ -152,7 +149,7 @@ func (h *addressHandler) DeleteAddress(ctx *gin.Context) {
 		return
 
 	}
-	
+
 	ctx.JSON(http.StatusOK, data)
 
 }
